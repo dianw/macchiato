@@ -5,7 +5,7 @@
   "main": "api/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node api/app.js"
+    "start": "forever -w api/app.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,7 @@
     "express": "^4.14.0",
     "express-session": "^1.14.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "forever": "^0.15.2"
+  }
 }

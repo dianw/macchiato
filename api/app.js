@@ -4,11 +4,15 @@ const session = require('express-session')
 const app = express();
 
 // app.set('trust proxy', 1); // trust first proxy
-app.use(session({
+app.use('*', session({
   secret: 'random af',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  store: new session.MemoryStore(),
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: false
+  }
 }));
 
 // routers
