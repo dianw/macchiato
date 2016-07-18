@@ -1,0 +1,29 @@
+{
+  "name": "express-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node api/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/dianw/express-starter.git"
+  },
+  "keywords": [
+    "express",
+    "starter"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://gitlab.com/dianw/express-starter/issues"
+  },
+  "homepage": "https://gitlab.com/dianw/express-starter#README",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-session": "^1.14.0"
+  },
+  "devDependencies": {}
+}
