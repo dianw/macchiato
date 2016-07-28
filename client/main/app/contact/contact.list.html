@@ -1,0 +1,28 @@
+<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="contact in ctrl.contacts">
+			<td ng-bind="$index + 1"></td>
+			<td ng-bind="contact.name"></td>
+			<td ng-bind="contact.phone"></td>
+			<td ng-bind="contact.email"></td>
+			<td>
+				<a href="" ui-sref="contact-form({ id: contact.id })" title="Edit {{ contact.name }}">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</a>
+				&nbsp;
+				<a href="" ng-click="ctrl.delete(contact)" title="Delete {{ contact.name }}">
+					<i class="glyphicon glyphicon-trash"></i>
+				</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

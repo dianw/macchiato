@@ -1,0 +1,20 @@
+<form ng-submit="ctrl.save(ctrl.contact)">
+	<div class="form-group" ng-if="ctrl.contact.id">
+		<label for="id">ID</label>
+		<input type="text" id="id" class="form-control" placeholder="ID" ng-model="ctrl.contact.id" readonly="" />
+	</div>
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" id="name" class="form-control" placeholder="Name" ng-model="ctrl.contact.name" />
+	</div>
+	<div class="form-group">
+		<label for="phone">Phone</label>
+		<input type="number" id="phone" class="form-control" placeholder="Phone Number" ng-model="ctrl.contact.phone" />
+	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input type="email" id="email" class="form-control" placeholder="Email Address" ng-model="ctrl.contact.email" />
+	</div>
+
+	<button type="submit" class="btn btn-default btn-lg col-sm-3 col-xs-12">Save</button>
+</form>

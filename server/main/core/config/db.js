@@ -1,21 +1,20 @@
-const env = require('../../env.json')[process.env.NODE_ENV || 'prod'];
-const db = env.db;
+const dbEnv = require('../../env.js').db;
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize(db.name, db.username, db.password, {
+const sequelize = new Sequelize(dbEnv.name, dbEnv.username, dbEnv.password, {
 	define: {
 		//prevent sequelize from pluralizing table names
 		freezeTableName: true,
 		timestamps: false
 	},
-	dialect: db.dialect,
-	host: db.host,
+	dialect: dbEnv.dialect,
+	host: dbEnv.host,
 	pool: {
 		max: 10,
 		min: 1,
 		idle: 10000
 	},
-	port: db.port
+	port: dbEnv.port
 });
 
 sequelize.authenticate().then(() => {

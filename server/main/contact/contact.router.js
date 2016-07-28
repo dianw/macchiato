@@ -49,4 +49,12 @@ router.put('/:id', (req, res) => {
 	});
 });
 
+router.delete('/:id', (req, res) => {
+	Contact.destroy({
+		where: { id: req.params.id }
+	}).then(() => {
+		res.status(204).end();
+	});
+});
+
 module.exports = router;
