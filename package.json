@@ -2,10 +2,10 @@
   "name": "express-starter",
   "version": "1.0.0",
   "description": "",
-  "main": "api/app.js",
+  "main": "server/main/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "forever -w api/app.js"
+    "start": "gulp serve"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,20 @@
   },
   "homepage": "https://gitlab.com/dianw/express-starter#README",
   "dependencies": {
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "express-session": "^1.14.0"
+    "express-session": "^1.14.0",
+    "mysql": "^2.11.1",
+    "sequelize": "^3.23.6",
+    "umzug": "^1.11.0"
   },
   "devDependencies": {
-    "forever": "^0.15.2"
+    "browser-sync": "^2.13.0",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-plumber": "^1.1.0",
+    "jshint": "^2.9.2"
   }
 }
