@@ -5,15 +5,19 @@
 	<base href="/" />
 	<title>The Spammer</title>
 
+	<!-- build:css(.) styles/vendor.css -->
 	<!-- bower:css -->
 	<link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.css" />
 	<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
 	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
 	<!-- endbower -->
+	<!-- endbuild -->
 
+	<!-- build:css(client/tmp/styles) styles/app.css -->
 	<!-- inject:css -->
 	<link rel="stylesheet" href="styles/jumbotron-narrow.css">
 	<!-- endinject -->
+	<!-- endbuild -->
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -35,6 +39,7 @@
 	<div class="container" ui-view>
 	</div>
 
+	<!-- build:js(.) scripts/vendor.js -->
 	<!-- bower:js -->
 	<script src="/bower_components/angular/angular.js"></script>
 	<script src="/bower_components/angular-animate/angular-animate.js"></script>
@@ -46,7 +51,9 @@
 	<script src="/bower_components/lodash/lodash.js"></script>
 	<script src="/bower_components/restangular/dist/restangular.js"></script>
 	<!-- endbower -->
+	<!-- endbuild -->
 
+	<!-- build:js(client/tmp/scripts) scripts/app.js -->
 	<script src="app.js"></script>
 	<!-- inject:js -->
 	<script src="app/contact/contact.form.controller.js"></script>
@@ -56,5 +63,6 @@
 	<script src="modules/config/rest.config.js"></script>
 	<script src="modules/config/route.config.js"></script>
 	<!-- endinject -->
+	<!-- endbuild -->
 </body>
 </html>

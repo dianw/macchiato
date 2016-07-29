@@ -41,6 +41,12 @@ if (env.name === 'dev') {
 	app.all('/*', (req, res) => {
 		res.sendFile(path.resolve('client/main/index.html'));
 	});
+} else {
+	app.use('/', express.static(path.resolve('client/dist')));
+
+	app.all('/*', (req, res) => {
+		res.sendFile(path.resolve('client/dist/index.html'));
+	});
 }
 
 app.listen(env.server.port, () => {
