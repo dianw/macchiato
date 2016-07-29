@@ -14,15 +14,18 @@ module.exports = {
 				type: dataType.DATE,
 				field: 'updated_at'
 			},
+			address: {
+				type: dataType.STRING(500)
+			},
 			name: {
 				type: dataType.STRING(500)
 			},
 			phone: {
-				type: dataType.STRING(500)
+				type: dataType.STRING(100)
 			},
 			email: {
-				type: dataType.STRING(500)
-			}
+				type: dataType.STRING(200)
+			},
 		});
 	},
 	down() {

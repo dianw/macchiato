@@ -3,9 +3,12 @@ const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(dbEnv.name, dbEnv.username, dbEnv.password, {
 	define: {
+		timestamps: true,
+		createdAt: 'created_at',
+		updatedAt: 'updated_at',
 		//prevent sequelize from pluralizing table names
 		freezeTableName: true,
-		timestamps: false
+		underscored: true
 	},
 	dialect: dbEnv.dialect,
 	host: dbEnv.host,

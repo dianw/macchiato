@@ -1,14 +1,19 @@
 (() => {
 	'use strict';
 
-	angular.module('es').controller('ContactFormCtrl', function($state, $stateParams, Restangular) {
-		const contactService = Restangular.service('contacts');
+	angular.module('es').controller('ContactFormCtrl', function($state, $stateParams, RestContactService) {
 		const ctrl = this;
 		ctrl.contact = {};
+		ctrl.load = loadContact;
 		ctrl.save = saveContact;
 
 		if ($stateParams.id !== '+') {
-			contactService.one($stateParams.id).get().then((contact) => {
+			loadContact();
+		}
+
+		function loadContact() {
+			RestContactService.one($stateParams.id).get().then((contact) => {
+				contact.phone = Number(contact.phone);
 				ctrl.contact = contact;
 			});
 		}
@@ -19,7 +24,7 @@
 					$state.go('contact-list');
 				});
 			} else {
-				contactService.post(contact).then(() => {
+				RestContactService.post(contact).then(() => {
 					$state.go('contact-list');
 				});
 			}

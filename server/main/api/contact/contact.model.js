@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../core/config/db');
+const db = require('../../core/config/db');
 
 module.exports = db.define('contact', {
 	id: {
@@ -14,6 +14,9 @@ module.exports = db.define('contact', {
 	updatedAt: {
 		type: Sequelize.DATE,
 		field: 'updated_at'
+	},
+	address: {
+		type: Sequelize.STRING
 	},
 	name: {
 		type: Sequelize.STRING

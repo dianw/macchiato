@@ -20,12 +20,10 @@
     "angular-sanitize": "^1.5.7",
     "angular-loading-bar": "^0.9.0",
     "angular-ui-router": "^0.3.1",
-    "angularfire": "^2.0.1",
     "bootstrap": "^3.3.6",
-    "firebase": "^3.0.5",
     "font-awesome": "^4.6.3",
-    "AdminLTE": "admin-lte#^2.3.3",
-    "restangular": "^1.5.2"
+    "restangular": "^1.5.2",
+    "lodash": "^4.14.1"
   },
   "overrides": {
     "AdminLTE": {

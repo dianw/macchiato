@@ -29,7 +29,9 @@ app.use(session({
 	}
 }));
 
-app.use('/api/contacts', require('./contact/contact.router'));
+// api endpoints
+app.use('/api/contacts', require('./api/contact/contact.router'));
+app.use('/api/groups', require('./api/group/group.router'));
 
 if (env.name === 'dev') {
 	app.use('/bower_components', express.static(path.resolve('bower_components')));
@@ -43,5 +45,4 @@ if (env.name === 'dev') {
 
 app.listen(env.server.port, () => {
 	console.log('Application initialized');
-	console.log(__dirname + '/../../client/main');
 });

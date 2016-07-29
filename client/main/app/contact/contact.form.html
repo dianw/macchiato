@@ -1,20 +1,58 @@
-<form ng-submit="ctrl.save(ctrl.contact)">
-	<div class="form-group" ng-if="ctrl.contact.id">
-		<label for="id">ID</label>
-		<input type="text" id="id" class="form-control" placeholder="ID" ng-model="ctrl.contact.id" readonly="" />
+<div class="row">
+	<div class="col-md-3 col-sm-4 col-xs-12">
+		<h2>
+			Contacts
+			<br />
+			<small>Edit or modify contacts</small>
+		</h2>
+		<hr />
+		<button type="button" class="btn btn-default" ng-click="ctrl.load()">
+			<i class="glyphicon glyphicon-refresh"></i>
+			Reset
+		</button>
 	</div>
-	<div class="form-group">
-		<label for="name">Name</label>
-		<input type="text" id="name" class="form-control" placeholder="Name" ng-model="ctrl.contact.name" />
+	<div class="col-md-9 col-sm-8 col-xs-12">
+		<br />
+		<form ng-submit="ctrl.save(ctrl.contact)">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 ng-if="ctrl.contact.id">Edit #{{ctrl.contact.id}}</h4>
+					<h4 ng-if="!ctrl.contact.id">New Contact</h4>
+				</div>
+				<div class="panel-body">
+					<div class="form-group" ng-if="ctrl.contact.id">
+						<label for="id">ID</label>
+						<input type="text" id="id" class="form-control" placeholder="ID" ng-model="ctrl.contact.id" readonly="" />
+					</div>
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" id="name" class="form-control" placeholder="Name" ng-model="ctrl.contact.name" />
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone</label>
+						<input type="number" id="phone" class="form-control" placeholder="Phone Number" ng-model="ctrl.contact.phone" />
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" id="email" class="form-control" placeholder="Email Address" ng-model="ctrl.contact.email" />
+					</div>
+					<div class="form-group">
+						<label for="address">Address</label>
+						<textarea rows="3" id="address" class="form-control" placeholder="Address" ng-model="ctrl.contact.address" ></textarea>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary col-xs-3 pull-right">
+							<i class="glyphicon glyphicon-floppy-disk"></i>
+							Save
+						</button>
+						<div class="pull-right">&nbsp;</div>
+						<a href="" ui-sref="contact-list" class="btn btn-default pull-right">
+							<i class="glyphicon glyphicon-trash"></i>
+							Cancel
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
-	<div class="form-group">
-		<label for="phone">Phone</label>
-		<input type="number" id="phone" class="form-control" placeholder="Phone Number" ng-model="ctrl.contact.phone" />
-	</div>
-	<div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" id="email" class="form-control" placeholder="Email Address" ng-model="ctrl.contact.email" />
-	</div>
-
-	<button type="submit" class="btn btn-default btn-lg col-sm-3 col-xs-12">Save</button>
-</form>
+</div>

@@ -1,56 +1,52 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('./contact.model');
+const Group = require('./group.model');
 
 router.get('/', (req, res) => {
-	Contact.findAndCountAll()
-		.then(contacts => res.send(contacts))
+	Group.findAndCountAll()
+		.then(groups => res.send(groups))
 		.error(e => res.send(e));
 });
 
 router.get('/:id', (req, res) => {
-	Contact.findById(req.params.id).then(c => {
+	Group.findById(req.params.id).then(c => {
 		if (c) {
 			res.send(c);
 		} else {
 			res.status(400).send({
-				message: `No contact found with id: ${req.params.id}`
+				message: `No group found with id: ${req.params.id}`
 			});
 		}
 	});
 });
 
 router.post('/', (req, res) => {
-	const contact = req.body;
-	contact.createdAt = new Date();
-	contact.updatedAt = new Date();
+	const group = req.body;
 
-	Contact.create(contact).then(c => {
+	Group.create(group).then(c => {
 		res.json(c.dataValues);
 	}).error(e => res.json(e));
 });
 
 router.put('/:id', (req, res) => {
-	const contact = req.body;
+	const group = req.body;
 
-	Contact.findById(req.params.id).then(c => {
+	Group.findById(req.params.id).then(c => {
 		if (c) {
 			c.update({
-				name: contact.name,
-				phone: contact.phone,
-				email: contact.email,
-				updatedAt: new Date()
+				name: group.name,
+				phone: group.description
 			}).then(c => res.send(c));
 		} else {
 			res.status(400).send({
-				message: `No contact found with id: ${req.params.id}`
+				message: `No group found with id: ${req.params.id}`
 			});
 		}
 	});
 });
 
 router.delete('/:id', (req, res) => {
-	Contact.destroy({
+	Group.destroy({
 		where: { id: req.params.id }
 	}).then(() => {
 		res.status(204).end();

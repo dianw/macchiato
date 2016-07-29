@@ -89,20 +89,11 @@ gulp.task('wiredep', () => {
 		.pipe(browserSync.stream());
 });
 
-gulp.task('serve:client', ['scripts:server:lint'], () => {
+gulp.task('serve:client', ['clean:client'], () => {
 	// initialize browsersync
 	browserSync.init({
 		port: 3001,
 		proxy: 'localhost:3000'
-		// serveStatic: [`${dirs.client.src}`]
-		// server: {
-		// 	baseDir: `${dirs.src}`,
-		// 	routes: {
-		// 		'/bower_components': 'bower_components',
-		// 		'/styles': `${dirs.tmp}/styles`,
-		// 		'/scripts': `${dirs.tmp}/scripts`
-		// 	}
-		// }
 	});
 
 	gulp.start('styles:inject');
