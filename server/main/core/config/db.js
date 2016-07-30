@@ -1,7 +1,7 @@
 const dbEnv = require('../../env.js').db;
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize(dbEnv.name, dbEnv.username, dbEnv.password, {
+const dbOpts = {
 	define: {
 		timestamps: true,
 		createdAt: 'created_at',
@@ -11,14 +11,22 @@ const sequelize = new Sequelize(dbEnv.name, dbEnv.username, dbEnv.password, {
 		underscored: true
 	},
 	dialect: dbEnv.dialect,
-	host: dbEnv.host,
 	pool: {
 		max: 10,
 		min: 1,
 		idle: 10000
-	},
-	port: dbEnv.port
-});
+	}
+};
+
+let sequelize;
+
+if (dbEnv.uri) {
+	sequelize = new Sequelize(dbEnv.uri, dbOpts);
+} else {
+	dbOpts.host = dbEnv.host;
+	dbOpts.port = dbEnv.port;
+	sequelize = new Sequelize(dbEnv.name, dbEnv.username, dbEnv.password, dbOpts);
+}
 
 sequelize.authenticate().then(() => {
 	console.log('Connection has been established successfully.');

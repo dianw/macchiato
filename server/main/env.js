@@ -28,15 +28,10 @@ const env = {
 			port: 3000
 		}
 	},
-	prod: {
-		name: 'prod',
+	heroku: {
+		name: 'heroku',
 		db: {
-			host: 'ec2-50-17-209-1.compute-1.amazonaws.com',
-			port: 5432,
-			name: 'dfvlltf6ikvusp',
-			dialect: 'postgres',
-			username: 'aalbizyudsudsp',
-			password: 'nznyeWCHmnQ7yf1m5GQWcV_m2p'
+			dialect: 'postgres'
 		},
 		mail: {
 			smtp: {
