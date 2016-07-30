@@ -1,3 +1,6 @@
+const _ = require('lodash');
+const argv = require('minimist')(process.argv.slice(2));
+
 const env = {
 	dev: {
 		name: 'dev',
@@ -53,4 +56,7 @@ const env = {
 	}
 };
 
-module.exports = env[process.env.NODE_ENV || 'prod'];
+const activeEnvName = _.defaultTo(argv.profile, 'dev');
+const activeEnv = _.defaultsDeep(argv, env[activeEnvName]);
+
+module.exports = activeEnv;

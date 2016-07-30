@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'dev';
-
 const gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer'),
 	babel = require('gulp-babel'),
@@ -172,9 +170,13 @@ gulp.task('serve', ['serve:server'], () => {
 	gulp.run('serve:client');
 });
 
-gulp.task('build:client', ['clean:client:tmp', 'clean:client:dist'], () => {
+gulp.task('clean:client', ['clean:client:tmp', 'clean:client:dist']);
+
+gulp.task('build:client', ['clean:client'], () => {
 	gulp.start('fonts');
 	gulp.start('usemin');
 });
+
+gulp.task('clean', ['clean:client']);
 
 gulp.task('build', ['build:client']);
