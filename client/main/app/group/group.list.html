@@ -1,0 +1,70 @@
+<div class="row">
+	<div class="col-md-3 col-sm-4 col-xs-12">
+		<h2>
+			Groups
+			<br />
+			<small>Edit or modify groups</small>
+		</h2>
+		<hr />
+		<form ng-submit="ctrl.search()">
+			<div class="form-group">
+				<input type="text" class="form-control" ng-model="ctrl.searchParams.q" />
+			</div>
+			<button type="submit" class="btn btn-default col-md-6 col-xs-12">
+				<i class="glyphicon glyphicon-search"></i>
+				Search
+			</button>
+		</form>
+	</div>
+	<div class="col-md-9 col-sm-8 col-xs-12">
+		<br />
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-sm-3 col-xs-12">
+						<select class="form-control" ng-options="l for l in [5, 10, 100, 1000] track by l" ng-model="ctrl.searchParams.max" ng-change="ctrl.search()"></select>
+					</div>
+					<div class="col-sm-9 col-xs-12 text-right">
+						<a href="" ui-sref="group-form({id: '+'})" class="btn btn-primary">
+							<i class="glyphicon glyphicon-plus"></i> New group
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="group in ctrl.groups" ng-init="idx = ctrl.searchParams.page * ctrl.searchParams.max">
+								<td ng-bind="idx + $index + 1"></td>
+								<td ng-bind="group.name"></td>
+								<td ng-bind="group.description"></td>
+								<td>
+									<a href="" ui-sref="group-form({ id: group.id, form: '' })" class="text-primary" title="Edit {{ group.name }}">
+										<i class="glyphicon glyphicon-pencil"></i>
+									</a>
+									&nbsp;
+									<a href="" ng-click="ctrl.delete(group)" class="text-danger" title="Delete {{ group.name }}">
+										<i class="glyphicon glyphicon-trash"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<h3 class="panel-title pull-right">Found {{ ctrl.groups.meta.count }} rows</h3>
+				<ul uib-pagination class="pagination-sm" total-items="ctrl.groups.meta.count" items-per-page="ctrl.searchParams.max" ng-model="ctrl.currentPage" ng-change="ctrl.search()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+			</div>
+		</div>
+	</div>
+</div>

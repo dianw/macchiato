@@ -1,9 +1,7 @@
 (() => {
 	'use strict';
 
-	angular.module('es').config(($stateProvider, $urlRouterProvider) => {
-		$urlRouterProvider.otherwise('/backend/contacts');
-
+	angular.module('es').config(($stateProvider) => {
 		$stateProvider.state('contact-list', {
 			url: '/backend/contacts',
 			controller: 'ContactListCtrl as ctrl',
