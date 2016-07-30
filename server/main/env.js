@@ -31,12 +31,12 @@ const env = {
 	prod: {
 		name: 'prod',
 		db: {
-			host: 'localhost',
-			port: 3306,
-			name: 'macchiato',
-			dialect: 'mysql',
-			username: 'root',
-			password: 'root'
+			host: 'ec2-50-17-209-1.compute-1.amazonaws.com',
+			port: 5432,
+			name: 'dfvlltf6ikvusp',
+			dialect: 'postgres',
+			username: 'aalbizyudsudsp',
+			password: 'nznyeWCHmnQ7yf1m5GQWcV_m2p'
 		},
 		mail: {
 			smtp: {
