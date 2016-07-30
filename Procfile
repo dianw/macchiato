@@ -1,1 +1,1 @@
-web: node server/main/app --server.port=$PORT
+web: node server/main/app --profile=prod --server.port=$PORT
