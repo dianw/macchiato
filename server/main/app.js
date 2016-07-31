@@ -31,6 +31,7 @@ app.use(session({
 
 // api endpoints
 app.use('/api/contacts', require('./api/contact/contact.router'));
+app.use('/api/contacts', require('./api/contact/contact_group.router'));
 app.use('/api/groups', require('./api/group/group.router'));
 
 if (env.name === 'dev') {

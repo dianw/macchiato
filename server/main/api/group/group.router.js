@@ -1,6 +1,6 @@
 const express = require('express');
 const _ = require('lodash');
-const Group = require('./group.model');
+const Group = require('../../core/config/db').Group;
 
 const router = express.Router();
 
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 		offset: _.toInteger(offset)
 	})
 		.then(groups => res.send(groups))
-		.error(e => res.send(e));
+		.error(e => res.status(500).send(e));
 });
 
 router.get('/:id', (req, res) => {
@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 				message: `No group found with id: ${req.params.id}`
 			});
 		}
-	});
+	}).error(e => res.status(500).send(e));
 });
 
 router.post('/', (req, res) => {
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
 
 	Group.create(group).then(c => {
 		res.json(c.dataValues);
-	}).error(e => res.json(e));
+	}).error(e => res.status(500).send(e));
 });
 
 router.put('/:id', (req, res) => {
@@ -57,7 +57,7 @@ router.put('/:id', (req, res) => {
 				message: `No group found with id: ${req.params.id}`
 			});
 		}
-	});
+	}).error(e => res.status(500).send(e));
 });
 
 router.delete('/:id', (req, res) => {
@@ -65,7 +65,7 @@ router.delete('/:id', (req, res) => {
 		where: { id: req.params.id }
 	}).then(() => {
 		res.status(204).end();
-	});
+	}).error(e => res.status(500).send(e));
 });
 
 module.exports = router;

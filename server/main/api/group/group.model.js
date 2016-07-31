@@ -1,24 +1,27 @@
-const Sequelize = require('sequelize');
-const db = require('../../core/config/db');
+module.exports = (sequelize, DataTypes) => {
+	const Group = sequelize.define('Group', {
+		id: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		createdAt: {
+			type: DataTypes.DATE,
+			field: 'created_at'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			field: 'updated_at'
+		},
+		name: {
+			type: DataTypes.STRING
+		},
+		description: {
+			type: DataTypes.STRING
+		}
+	}, {
+		tableName: 'group'
+	});
 
-module.exports = db.define('group', {
-	id: {
-		type: Sequelize.INTEGER,
-		primaryKey: true,
-		autoIncrement: true
-	},
-	createdAt: {
-		type: Sequelize.DATE,
-		field: 'created_at'
-	},
-	updatedAt: {
-		type: Sequelize.DATE,
-		field: 'updated_at'
-	},
-	name: {
-		type: Sequelize.STRING
-	},
-	description: {
-		type: Sequelize.STRING
-	}
-});
+	return Group;
+};

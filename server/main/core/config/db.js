@@ -1,5 +1,8 @@
-const dbEnv = require('../../env.js').db;
-const Sequelize = require('sequelize');
+const recursive	= require('recursive-readdir-sync');
+const Sequelize	= require('sequelize');
+const dbEnv		= require('../../env.js').db;
+const _			= require('lodash');
+const db		= {};
 
 const dbOpts = {
 	define: {
@@ -30,9 +33,24 @@ if (dbEnv.uri) {
 
 sequelize.authenticate().then(() => {
 	console.log('Connection has been established successfully.');
-})
-.catch(err => {
+}).catch(err => {
 	console.log('Unable to connect to the database:', err);
 });
 
-module.exports = sequelize;
+recursive(__dirname + '/../..')
+	.filter(file => _.endsWith(file, '.model.js'))
+	.forEach(file => {
+		const model = sequelize.import(file);
+		db[model.name] = model;
+	});
+
+Object.keys(db).forEach(modelName => {
+	if ('associate' in db[modelName]) {
+		db[modelName].associate(db);
+	}
+});
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;

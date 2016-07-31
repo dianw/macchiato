@@ -1,25 +1,27 @@
-const Sequelize = require('sequelize');
-const Contact = require('../contact/contact.model');
-const Group = require('../group/group.model');
-const db = require('../../core/config/db');
+module.exports = (sequelize, DataTypes) => {
+	const ContactGroup = sequelize.define('ContactGroup', {
+		id: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		createdAt: {
+			type: DataTypes.DATE,
+			field: 'created_at'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			field: 'updated_at'
+		}
+	}, {
+		classMethods: {
+			associate(models) {
+				ContactGroup.belongsTo(models.Contact);
+				ContactGroup.belongsTo(models.Group);
+			},
+			tableName: 'contact_group'
+		}
+	});
 
-const ContactGroup = db.define('contact_group', {
-	id: {
-		type: Sequelize.INTEGER,
-		primaryKey: true,
-		autoIncrement: true
-	},
-	createdAt: {
-		type: Sequelize.DATE,
-		field: 'created_at'
-	},
-	updatedAt: {
-		type: Sequelize.DATE,
-		field: 'updated_at'
-	}
-});
-
-ContactGroup.belongsTo(Contact);
-ContactGroup.belongsTo(Group);
-
-module.exports = ContactGroup;
+	return ContactGroup;
+};
