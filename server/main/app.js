@@ -33,6 +33,7 @@ app.use(session({
 app.use('/api/contacts', require('./api/contact/contact.router'));
 app.use('/api/contacts', require('./api/contact/contact_group.router'));
 app.use('/api/groups', require('./api/group/group.router'));
+app.use('/api/groups', require('./api/group/group_contact.router'));
 
 if (env.name === 'dev') {
 	app.use('/bower_components', express.static(path.resolve('bower_components')));
