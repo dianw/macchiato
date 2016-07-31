@@ -13,28 +13,22 @@ router.get('/:id/groups', (req, res) => {
 		where: {
 			'contact_id': req.params.id
 		}
-	})
-		.then(contactGroups => {
-			contactGroups.rows = _.map(contactGroups.rows, cg => cg.group);
+	}).then(contactGroups => {
+		contactGroups.rows = _.map(contactGroups.rows, cg => cg.Group);
 
-			res.send(contactGroups);
-		})
-		.error(e => res.status(500).send(e));
+		res.send(contactGroups);
+	}).catch(e => res.status(500).send(e));
 });
 
 router.post('/:id/groups', (req, res) => {
-	ContactGroup.findAndCountAll({
-		include: [ Group ],
-		where: {
-			'contact_id': req.params.id
-		}
-	})
-		.then(contactGroups => {
-			contactGroups.rows = _.map(contactGroups.rows, cg => cg.group);
+	const contactGroup = {
+		contact_id: req.params.id,
+		group_id: req.body.id
+	};
 
-			res.send(contactGroups);
-		})
-		.error(e => res.status(500).send(e));
+	ContactGroup.create(contactGroup).then(c => {
+		res.json(c.dataValues);
+	}).catch(e => res.status(500).send(e));
 });
 
 module.exports = router;
