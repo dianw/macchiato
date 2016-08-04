@@ -10,6 +10,10 @@
 			url: '/backend/groups/:id',
 			controller: 'GroupFormCtrl as ctrl',
 			templateUrl: 'app/group/group.form.html'
+		}).state('group-contact-list', {
+			url: '/backend/groups/:id/contacts?q',
+			controller: 'GroupContactListCtrl as ctrl',
+			templateUrl: 'app/group/group.contact.list.html'
 		});
 	});
 })();

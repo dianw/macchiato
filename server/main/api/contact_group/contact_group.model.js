@@ -18,9 +18,9 @@ module.exports = (sequelize, DataTypes) => {
 			associate(models) {
 				ContactGroup.belongsTo(models.Contact);
 				ContactGroup.belongsTo(models.Group);
-			},
-			tableName: 'contact_group'
-		}
+			}
+		},
+		tableName: 'contact_group'
 	});
 
 	return ContactGroup;

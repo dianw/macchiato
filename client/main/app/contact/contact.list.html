@@ -38,9 +38,10 @@
 							<tr>
 								<th>#</th>
 								<th>Name</th>
-								<th>Phone</th>
-								<th>Email</th>
+								<th>Email (Phone)</th>
+								<!-- <th>Email</th> -->
 								<th>Address</th>
+								<th>Groups</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -48,9 +49,17 @@
 							<tr ng-repeat="contact in ctrl.contacts" ng-init="idx = ctrl.searchParams.page * ctrl.searchParams.max">
 								<td ng-bind="idx + $index + 1"></td>
 								<td ng-bind="contact.name"></td>
-								<td ng-bind="contact.phone"></td>
-								<td ng-bind="contact.email"></td>
+								<!-- <td ng-bind="contact.phone"></td> -->
+								<td>
+									<div ng-bind="contact.email"></div>
+									<div ng-if="contact.phone" ng-bind="'(' + contact.phone + ')'"></div>
+								</td>
 								<td ng-bind="contact.address"></td>
+								<td>
+									<span ng-repeat="g in contact.groups">
+										<a href="" class="btn btn-xs btn-default" ui-sref="group-contact-list({ id: g.id, q: contact.name })" ng-bind="g.name"></a>
+									</span>
+								</td>
 								<td>
 									<a href="" ui-sref="contact-form({ id: contact.id, form: '' })" class="text-primary" title="Edit {{ contact.name }}">
 										<i class="glyphicon glyphicon-pencil"></i>

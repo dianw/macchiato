@@ -26,6 +26,13 @@
 
 			RestContactService.getList(ctrl.searchParams).then((contacts) => {
 				ctrl.contacts = contacts;
+				contacts.forEach(loadContactsGroups);
+			});
+		}
+
+		function loadContactsGroups(contact) {
+			contact.one('groups').getList().then(groups => {
+				contact.groups = groups;
 			});
 		}
 

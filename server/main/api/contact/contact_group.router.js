@@ -8,11 +8,17 @@ const Group = model.Group,
 const router = express.Router();
 
 router.get('/:id/groups', (req, res) => {
+	const limit = _.defaultTo(req.query.max, 10);
+	const offset = _.defaultTo(req.query.offset, 0);
+	const q = _.toString(req.query.q);
+
 	ContactGroup.findAndCountAll({
 		include: [ Group ],
 		where: {
 			'contact_id': req.params.id
-		}
+		},
+		limit: _.toInteger(limit),
+		offset: _.toInteger(offset)
 	}).then(contactGroups => {
 		contactGroups.rows = _.map(contactGroups.rows, cg => cg.Group);
 

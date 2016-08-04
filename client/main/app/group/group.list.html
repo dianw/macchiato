@@ -39,6 +39,7 @@
 								<th>#</th>
 								<th>Name</th>
 								<th>Description</th>
+								<th>Users</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -47,6 +48,13 @@
 								<td ng-bind="idx + $index + 1"></td>
 								<td ng-bind="group.name"></td>
 								<td ng-bind="group.description"></td>
+								<td>
+									<a href="" ui-sref="group-contact-list({ id: group.id })" class="btn btn-xs btn-primary">
+										<i class="glyphicon glyphicon-user"></i>
+										View &nbsp;&nbsp;&nbsp;
+										<span class="badge" ng-bind="group.contacts.meta.count"></span>
+									</a>
+								</td>
 								<td>
 									<a href="" ui-sref="group-form({ id: group.id, form: '' })" class="text-primary" title="Edit {{ group.name }}">
 										<i class="glyphicon glyphicon-pencil"></i>

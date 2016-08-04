@@ -26,6 +26,11 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING
 		}
 	}, {
+		classMethods: {
+			associate(models) {
+				Contact.hasMany(models.ContactGroup);
+			}
+		},
 		tableName: 'contact'
 	});
 
