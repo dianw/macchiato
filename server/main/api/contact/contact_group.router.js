@@ -13,7 +13,15 @@ router.get('/:id/groups', (req, res) => {
 	const q = _.toString(req.query.q);
 
 	ContactGroup.findAndCountAll({
-		include: [ Group ],
+		include: [ {
+			model: Group,
+			where: {
+				$or: {
+					name: { $like: _.join(['%', q, '%'], '') },
+					description: { $like: _.join(['%', q, '%'], '') }
+				}
+			}
+		} ],
 		where: {
 			'contact_id': req.params.id
 		},
