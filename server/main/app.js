@@ -6,7 +6,10 @@ const session = require('express-session');
 // environment
 const env = require('./env');
 
-//initialize database and run migration
+// initialize promise configuration
+require('./core/config/promise');
+
+// initialize database and run migration
 require('./core/config/db');
 require('./core/config/db.migration');
 
@@ -35,6 +38,7 @@ app.use('/api/contacts', require('./api/contact/contact_group.router'));
 app.use('/api/groups', require('./api/group/group.router'));
 app.use('/api/groups', require('./api/group/group_contact.router'));
 app.use('/api/templates', require('./api/template/template.router'));
+app.use('/api/mails', require('./api/mail/mail.router'));
 
 app.all('/api/*', (req, res) => {
 	res.status(404).end();

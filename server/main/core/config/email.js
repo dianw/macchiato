@@ -1,4 +1,6 @@
 const mailEnv = require('../../env.js').mail;
-const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer'),
+	smtpPool = require('nodemailer-smtp-pool'),
+	promise = require('bluebird');
 
-module.export = nodemailer.createTransport(mailEnv.smtp);
+module.exports = promise.promisifyAll(nodemailer.createTransport(smtpPool(mailEnv.smtp)));
