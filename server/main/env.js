@@ -42,8 +42,9 @@ const env = {
 					user: '0e492b2fecd149',
 					pass: 'f7d7283d053ce8'
 				},
-				pool: true,
-				secure: true
+				maxConnections: 1,
+				rateLimit: 3, // 3 message/s
+				secure: false
 			}
 		},
 		server: {
