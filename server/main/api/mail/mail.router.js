@@ -121,9 +121,9 @@ router.post('/', (req, res) => {
 					mailStatus.status = 'PENDING';
 				}
 
-				MailStatus.create(mailStatus).catch(e => console.err(e));
+				MailStatus.create(mailStatus).catch(e => console.log(e));
 			}).catch((e) => {
-				console.err(e);
+				console.log(e);
 			});
 		});
 
