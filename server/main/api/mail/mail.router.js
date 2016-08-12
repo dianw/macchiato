@@ -5,6 +5,7 @@ const mailer = require('../../core/config/email');
 const model = require('../../core/config/db'),
 	Contact = model.Contact,
 	ContactGroup = model.ContactGroup,
+	Group = model.Group,
 	Mail = model.Mail,
 	MailStatus = model.MailStatus,
 	Template = model.Template;
@@ -16,6 +17,7 @@ router.get('/', (req, res) => {
 	const offset = _.defaultTo(req.query.offset, 0);
 
 	Mail.findAndCountAll({
+		include: [ Group, Template ],
 		limit: _.toInteger(limit),
 		offset: _.toInteger(offset)
 	})
